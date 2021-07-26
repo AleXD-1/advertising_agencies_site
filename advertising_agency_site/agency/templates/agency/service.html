@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{service.title}} :: {{block.super}}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>{{ service.title }}</h1>
+{% for item in agencies %}
+
+<div class="card">
+  <div class="card-header">
+      {{ item.services }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ item.agency_name }}</h5>
+    <p class="card-text">
+        Сайт: {{ item.web_site }} <br>
+        Місто: {{ item.city }} <br>
+        Область: {{ item.region }} <br>
+        Адреса: {{ item.address }} <br>
+        Робочий телефон: {{ item.work_phone }}
+    </p>
+    <a href="{{item.get_absolute_url}}" class="btn btn-primary">Більше...</a>
+  </div>
+</div>
+<br>
+
+{% endfor %}
+{% endblock %}

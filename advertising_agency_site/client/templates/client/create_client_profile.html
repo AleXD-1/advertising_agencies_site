@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Створення профілю :: {{block.super}}
+{% endblock %}
+
+{% block content %}
+
+<h1>Створення профілю</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{form_client.as_p}}
+    <button type="submit" class="btn btn-primary btn-block">Створити профіль</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Профіль :: {{block.super}}
+{% endblock %}
+
+{% block content %}
+
+<h1>Мій профіль</h1>
+
+{% for item in agencies_profile %}
+<div class="card">
+    <div class="card-header">
+        {{ item.agency_name }}
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            Послуга: {{ item.services }} <br>
+            Опис: {{ item.description }} <br>
+            Сайт: {{ item.web_site }} <br>
+            Робочий телефон: {{ item.work_phone }} <br>
+            Мобільний телефон: {{ item.mobile_phone }} <br>
+            Адреса: {{ item.address }} <br>
+            Місто: {{ item.city }} <br>
+            Область: {{ item.region }} <br>
+            Поштовий індекс: {{ item.post_index }}
+        </p>
+    </div>
+</div>
+{% endfor %}
+<br>
+<a class="btn btn-primary" href="{% url 'create_agency' %}" role="button">Створити нове агентство</a>
+{% endblock %}

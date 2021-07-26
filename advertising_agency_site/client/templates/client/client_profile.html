@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Профіль :: {{block.super}}
+{% endblock %}
+
+{% block content %}
+
+<h1>Мій профіль</h1>
+
+Username: {{ client_profile.user.username }}
+<br>
+Phone: {{ client_profile.phone }}
+<br>
+Birth date: {{ client_profile.birth_date }}
+
+{% endblock %}

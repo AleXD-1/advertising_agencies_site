@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{block.super}}
+{% endblock %}
+
+{% block sidebar %}
+{% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<h1>{{ agency_item.agency_name }}</h1>
+Власник: {{ agency_item.user.username }} <br>
+Послуга: {{ agency_item.services }} <br>
+Опис: {{ agency_item.description }} <br>
+Сайт: {{ agency_item.web_site }} <br>
+Робочий телефон: {{ agency_item.work_phone }} <br>
+Мобільний телефон: {{ agency_item.mobile_phone }} <br>
+Адреса: {{ agency_item.address }} <br>
+Місто: {{ agency_item.city }} <br>
+Область: {{ agency_item.region }} <br> <br>
+{% if request.user.is_authenticated and user.profiles.profile_type == 'CL' %}
+<h3>Залиште відгук</h3>
+<form method="post">
+    {% csrf_token %}
+    {{form_review.as_p}}
+    <button type="submit" class="btn btn-primary btn-block">Створити відгук</button>
+</form>
+{% endif %}
+<br>
+<h3>Відгуки</h3>
+{% for review in reviews %}
+<div class="card">
+    <div class="card-header">
+        {{ review.client.user }}
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            {{ review.review_text }}
+        </p>
+    </div>
+    <div class="card-footer text-muted">
+        {{ review.publish_date|date:"d-m-Y H:i" }}
+    </div>
+</div>
+<br>
+{% endfor %}
+{% endblock %}
